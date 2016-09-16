@@ -1,0 +1,22 @@
+#Stats were taken from Fangraphs.com. Exit velocity and launch angle were taken from baseballsavant.com
+
+#Plotting Team BABIP allowed on histogram
+ggplot(data=PADE_1950_2016, aes(PADE_1950_2016$PADE)) +
+geom_histogram(aes(y =..density..),
+breaks=seq(.215, .35, by = 0.002),
+col="red",
+fill="blue",
+alpha = .2) +
+geom_density(col=1) +
+labs(title="Histogram for Team Park Adjusted Defensive Efficiency (PADE) Since 1950") +
+labs(x="PADE", y="Count")
+
+
+#Plotting scatterplot in GGPlot2 for YTD 2016 FIP vs. ERA
+ggplot(ERA_vs_FIP_2016, aes(x=FIP, y=ERA)) + geom_point()+geom_smooth()+labs(title = "YTD 2016 FIP vs. ERA")
+
+#Plotting EV vs. LA allowed and labeling by team
+ggplot(Averages_16, aes(x=Avg..EV.Allowed, y=BABIP, label=Team)) + geom_point()+geom_smooth()+labs(title = "2016 Avg. EV vs. BABIP") + geom_text(aes(label=Team), hjust=0.5, vjust=1.5)
+
+#Plotting EV vs. LA for Cut Fastballs and labeling by Player and frequency
+ggplot(FC_16_min_30BIP, aes(x=Average.of.hit_speed, y=Average.of.hit_angle, label=Pitcher_Name, size=Count)) + geom_point()+geom_smooth()+labs(title = "2016 Cut Fastball EV vs. LA - Min. 30 BIP") + geom_text(aes(label=Pitcher_Name), hjust=0.75, vjust=1.5)
